@@ -20,6 +20,11 @@ browser and see the empty form.
 
 See the instructions [in the `reactive.js` file](https://github.com/theefer/funjs-reactive/blob/master/dojo/reactive-ui/reactive.js).
 
+Feel free to disobey the rules and replace Bacon.js by [RxJS](http://reactive-extensions.github.io/RxJS/), [Highland](http://highlandjs.org/)
+or to use
+[angular-bacon](https://github.com/lauripiispanen/angular-bacon).
+
+
 ## Useful references
 
 * [Bacon.js](https://github.com/baconjs/bacon.js)
