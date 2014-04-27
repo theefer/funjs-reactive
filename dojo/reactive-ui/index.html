@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Reactive UI</title>
+  <script src="bower_components/bacon/dist/Bacon.js"></script>
+  <script src="bower_components/reqwest/reqwest.js"></script>
+</head>
+<body>
+
+  <input type="text" class="q" placeholder="Search..." />
+
+
+  <!-- From 8. onwards, you may want to use these form elements:
+
+  <input type="submit" class="submit" value="Search" disabled />
+  <input type="checkbox" class="find-as-you-type" checked />
+  Find as you type
+
+  -->
+
+
+  <!-- 1. Show the current query in the UI -->
+  <p>Results for <span class="q-display"></span>:</p>
+
+
+  <!-- 5. Display matched headlines in the 'results' list, as links to the original article -->
+  <ul class="results"></ul>
+
+
+  <!-- 6. Use 'limit' dropdown to customize the number of results -->
+  <p>
+    Limit:
+    <select class="limit">
+      <option>5</option>
+      <option>10</option>
+      <option>20</option>
+    </select>
+    results
+  </p>
+
+  <script src="reactive.js"></script>
+</body>
+</html>
