@@ -1,0 +1,1595 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title></title>
+<!-- FIXME: title -->
+
+    <meta name="description" content="" />
+    <meta name="author" content="Sébastien Cevey" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="reactive.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+    <!-- Prism -->
+    <link href="prism.css" rel="stylesheet" />
+    <script src="prism.js"></script>
+
+    <script src="bower_components/bacon/dist/Bacon.min.js"></script>
+</head>
+
+<body class="impress-not-supported">
+
+  <div class="fallback-message">
+    <p>Your browser <b>doesn’t support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+  </div>
+
+<div id="impress" data-transition-duration="500">
+
+    <div id="home" class="step" data-x="-1500" data-y="-3000">
+<!-- FIXME: title -->
+      <h1>State Your Business</h1>
+      <p>A journey in the world of<br/> <strong>Reactive Programming</strong> with JavaScript</p>
+      <div style="margin-top: 2em">
+        <p style="float: left;">
+          <a href="mailto:seb@cine7.net">Sébastien Cevey</a><br>
+          <a href="https://twitter.com/theefer">@theefer</a> /
+          <a href="http://inso.cc/">inso.cc</a>
+        </p>
+        <p><img src="guardian-logo.png" alt="The Guardian"
+                style="margin-top: 2em; float:right"/></p>
+      </div>
+    </div>
+
+    <div id="me" class="step" data-x="0" data-y="-3000">
+      <h2>Reactive &amp; Me</h2>
+
+      <p><strong>Composer</strong> &mdash; Rich SPA in AngularJS</p>
+      <p><strong>Plumber</strong> &mdash; Declarative build pipelines</p>
+      <p><strong>Media service</strong> &mdash; Reactive Scala channels</p>
+    </div>
+
+
+<style>
+h1, h2, h3, h4, h5 {
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2, h3, h4 {
+  font-size: 1.5em;
+}
+
+.shadowed {
+  visibility: hidden;
+}
+.present .shadowed {
+  visibility: visible;
+}
+
+.fake-concept-00,
+.fake-concept-0,
+.concept-1,
+.fake-concept-1,
+.concept-2 {
+  font-weight: bold;
+  text-align: center;
+}
+
+.fake-concept-00 {
+  font-size: 240pt;
+}
+.fake-concept-0 {
+  font-size: 160pt;
+}
+.concept-1,
+.fake-concept-1 {
+  font-size: 112pt;
+}
+
+.concept-2 {
+  font-size: 64pt;
+}
+
+.step.wider {
+  /* FIXME: mobile != */
+  width: 1200px;
+}
+
+pre {
+  font-size: 60%;
+}
+
+h1, h2, h3, h4, h5, p, li {
+  margin-bottom: 0.5em;
+}
+
+.minor {
+  color: #666;
+}
+</style>
+
+    <div id="functional" class="step" data-x="-1000">
+      <h2 class="concept-1">Functional</h2>
+    </div>
+
+    <div class="step skip" data-x="-250">
+      <p class="fake-concept-0">=</p>
+    </div>
+
+    <div id="fun-quote-1" class="step" data-x="500">
+      <q>“Treat computation as the evaluation of mathematical
+          functions and avoid state and mutable data.”</q>
+    </div>
+
+    <div class="step skip" data-x="1250">
+      <p class="fake-concept-0">=</p>
+    </div>
+
+    <div id="fun-quote-2" class="step" data-x="2000">
+      <q>“[Pure functions] produce results that depend only on their
+          inputs and not on the program state.”</q>
+    </div>
+
+    <div id="fun-quote-side" class="step" data-x="3200" data-rotate="-90">
+      <p>Avoid side-effects</p>
+      <p>No statements, only expressions</p>
+    </div>
+
+    <div id="fun-whole" class="step" data-x="500" data-scale="3"></div>
+
+<style>
+.distribute {
+  display: flex;
+/*  flex-direction: column; */
+  justify-content: space-between;
+  height: 600px;
+}
+.distribute-1 {
+  order: 1;
+}
+.distribute-2 {
+  order: 2;
+}
+.distribute-3 {
+  order: 3;
+}
+.distribute-down {
+  align-self: flex-end;
+}
+
+.reveal {
+  opacity: 0;
+}
+.active       .reveal,
+.after-active .reveal {
+  opacity: 1;
+  transition: opacity 0.7s ease-in-out 2s;
+}
+.active       .reveal + .reveal,
+.after-active .reveal + .reveal {
+  transition-delay: 3s;
+}
+.active       .reveal + .reveal + .reveal,
+.after-active .reveal + .reveal + .reveal {
+  transition-delay: 4s;
+}
+
+.fade {
+  opacity: 1;
+}
+.active       .fade,
+.after-active .fade {
+  opacity: 0;
+  transition: opacity 0.7s ease-in-out 3s;
+}
+</style>
+
+    <div id="fun-traits" class="step from-active" data-x="-1000">
+      <ul class="distribute">
+        <li class="distribute-1 reveal concept-2">Values</li>
+        <li class="distribute-3 reveal concept-2">Composition</li>
+        <li class="distribute-2 distribute-down reveal concept-2">Declarative</li>
+      </ul>
+    </div>
+
+    <div id="fun-values" class="step when-section-active"
+         data-x="-1000" data-y="-800" data-z="-10000"
+         data-section="val-compo-decl">
+
+      <h3>Program with values<br/>
+        <span class="minor">not actions</span></h3>
+
+      <p>Avoid side-effects: <strong>Immutable</strong> values</p>
+
+      <p>Don’t mutate: transform, combine, yield new values</p>
+
+      <p>Simple data types: collections, list, map</p>
+    </div>
+
+    <!-- Note: [high-order] functions are values, too -->
+
+    <div id="fun-compo" class="step when-section-active"
+         data-x="-1000" data-y="0" data-z="-10000"
+         data-section="val-compo-decl">
+      <h3>Function composition</h3>
+    </div>
+
+    <div id="fun-compo-example-1" class="step when-section-active wider"
+         data-x="500" data-y="0" data-z="-10000"
+         data-section="val-compo-decl">
+
+      <p>Find length of longest Guardian URL in a list</p>
+
+<pre><code class="language-javascript"
+>var urls = [
+  "http://www.theguardian.com/world/2014/apr/22/north-koreans-turning-against-the-regime",
+  "http://www.dailymail.co.uk/news/article-2610685/Dont-ask-migrants-long-theyre-staying-Border-guards-told-quizzing-arrivals-EU-breaches-Brussels-rules.html",
+  "http://www.theguardian.com/lifeandstyle/wordofmouth/2014/mar/10/quinoa-cappuccino-soy-almond-oat-milk-dairy-alternatives"
+];</code></pre>
+
+    </div>
+
+    <div id="fun-compo-example-2" class="step when-section-active wider"
+         data-x="500" data-y="1000" data-z="-10000"
+         data-section="val-compo-decl">
+
+<pre><code class="language-javascript"
+>// Imperative
+var maxGuUrlLen = 0;
+for (var i = 0, l = urls.length; i &lt; l; i++) {
+  if (/^https?:\/\/www.theguardian.com/.test(urls[i])) {
+    maxGuUrlLen = Math.max(maxGuUrlLen, urls[i].length);
+  }
+}
+
+// Functional with composition
+var maxGuUrlLen = urls.filter(function(s) {
+  return /^https?:\/\/www.theguardian.com/.test(s);
+}).map(function(s) {
+  return s.length;
+}).reduce(function(a, b) {
+  return Math.max(a, b);
+}, 0);</code></pre>
+
+    </div>
+
+
+    <div id="fun-compo-example-3" class="step when-section-active wider"
+         data-x="500" data-y="3000" data-z="-10000"
+         data-section="val-compo-decl">
+
+<pre><code class="language-javascript"
+>// Define helpers
+var guardianRegex = /^https?:\/\/www.theguardian.com/;
+var isGuardianUrl = guardianRegex.test.bind(guardianRegex);
+
+function prop(name) {
+  return function(obj) {
+    return obj[name];
+  };
+}
+
+function max(a, b /* ignore the rest */) {
+  return Math.max(a, b);
+}</code></pre>
+
+    </div>
+
+
+    <div id="fun-compo-example-4" class="step when-section-active wider"
+         data-x="500" data-y="4000" data-z="-10000"
+         data-section="val-compo-decl">
+
+<pre><code class="language-javascript"
+>// Imperative
+var maxGuUrlLen = 0;
+var len = prop("length");
+for (var i = 0, l = urls.length; i &lt; l; i++) {
+  if (isGuardianUrl(urls[i])) {
+    maxGuUrlLen = max(maxGuUrlLen, len(urls[i]));
+  }
+}
+
+// Functional with composition
+var maxGuUrlLen = urls.
+  filter(isGuardianUrl).
+  map(prop("length")).
+  reduce(max);</code></pre>
+
+    </div>
+
+
+    <div id="fun-compo-reasons" class="step when-section-active"
+         data-x="-1000" data-y="4000" data-z="-10000"
+         data-section="val-compo-decl">
+      <h3>Function composition</h3>
+
+      <p>More readable</p>
+      <p>More reusable</p>
+      <p>Separate logical tasks</p>
+      <p>Like Lego blocks<span class="minor">, rather than Jenga tower</span></p>
+
+    </div>
+
+    <div id="fun-decl" class="step when-section-active"
+         data-x="-1000" data-y="5000" data-z="-10000"
+         data-section="val-compo-decl">
+      <h3>Declarative style</h3>
+
+      <q>“A style of building the structure and elements of computer
+          programs, that expresses the logic of a computation without
+          describing its control flow.”</q>
+    </div>
+
+    <div id="fun-decl-reasons" class="step when-section-active"
+         data-x="-1000" data-y="6000" data-z="-10000"
+         data-section="val-compo-decl">
+
+      <p>Express the result in terms of the
+         inputs<span class="minor">, rather than starting from the
+         input and crafting your way to the result</span></p>
+
+      <p><strong>Express <em>what</em> the program should do,<br/>not <em>how</em></strong></p>
+    </div>
+
+    <!-- back to Functional... -->
+    <div id="fun-traits-again" class="step" data-x="-1000"></div>
+
+
+    <div class="step skip" data-x="-1000" data-y="500">
+      <p class="fake-concept-0 reveal">+</p>
+    </div>
+
+
+
+<style>
+.mapping {
+ clear: both;
+}
+.mapping--right {
+  float: right;
+}
+.mapping--target {
+  display: inline-block;
+  text-align: right;
+  min-width: 550px;    /* magic */
+  line-height: 1;
+}
+.arrow {
+  text-align: right;
+  font-size: 1.5em;
+  vertical-align: top;
+  line-height: 1;
+}
+</style>
+
+    <div id="real" class="step" data-x="-1000" data-y="1000">
+      <div class="reveal">
+      <p class="minor fade">Meanwhile, in the</p>
+
+      <h1 class="concept-1">Real World</h1>
+
+      <ul class="reveal" style="margin: 0 -20px;">
+        <li class="mapping">
+          <a href="#/real-async">Async</a>
+          <span class="mapping--right">
+            <span class="arrow">&#10145;</span>
+            <span class="concept-2 mapping--target">Promise</span>
+          </span>
+        </li>
+        <li class="mapping">
+          <a href="#/real-mutable">Mutable state</a>
+          <span class="mapping--right">
+            <span class="arrow">&#10145;</span>
+            <span class="concept-2 mapping--target">Observable</span>
+          </span>
+        </li>
+        <li class="mapping">
+          <a href="#/real-ui">UI</a>
+          <span class="mapping--right">
+            <span class="arrow">&#10145;</span>
+            <span class="concept-2 mapping--target">Data-binding</span>
+          </span>
+        </li>
+      </ul>
+      </div>
+    </div>
+
+
+
+
+<style>
+.async-zone {
+  background-color: #666;
+  width: 2000px;
+  height: 7000px;
+opacity: 1 !important; /* FIXME: arg! */
+}
+
+.bulleted {
+  list-style-type: disc;
+  margin-left: 1em;
+}
+</style>
+
+    <!-- <div class="step skip when-section-active async-zone" -->
+    <!--      data-section="async" -->
+    <!--      data-x="-1000" data-y="1000" data-z="-80000" -->
+    <!--      data-rotate="-90"> -->
+    <!-- </div> -->
+
+    <div id="real-async" class="step when-section-active"
+         data-section="async"
+         data-x="-4000" data-y="1000" data-z="-80000"
+         data-rotate="-90">
+      <h3>Async</h3>
+
+      <p>Some things take time</p>
+
+      <ul class="bulleted">
+        <li>AJAX</li>
+        <li>setTimeout, postMessage</li>
+        <li>IndexedDB, Service Workers</li>
+        <li>IO (NodeJS)</li>
+      </ul>
+
+      <p>JavaScript is single-threaded: don’t wait!</p>
+
+    </div>
+
+    <div id="real-async-callbacks-1" class="step when-section-active"
+         data-section="async"
+         data-x="-2500" data-y="1000" data-z="-80000"
+         data-rotate="-90">
+      <h4>Callbacks</h4>
+
+<pre><code class="language-javascript"
+>&gt; ajax(url, function(err, content) { ... });
+// =&gt; undefined</code></pre>
+
+      <p>Based on side-effects</p>
+
+    </div>
+
+    <div id="real-async-callbacks-2" class="step when-section-active"
+         data-section="async"
+         data-x="-1000" data-y="1000" data-z="-80000"
+         data-rotate="-90">
+
+<pre><code class="language-javascript"
+>var urls = [...];
+urls.
+  filter(isGuardianUrl).
+  map(function(url) {
+    ajax(url, function(err, content) {
+      // ???
+    });
+  });</code></pre>
+
+      <p>Not composable</p>
+
+    </div>
+
+    <div id="real-async-callbacks-3" class="step when-section-active"
+         data-section="async"
+         data-x="0" data-y="1000" data-z="-80000"
+         data-rotate="-90">
+
+<pre><code class="language-javascript"
+>ajax(url, function(err, content) {
+  if (! err) {
+    ajax(sequencedUrl, function(err2, content2) {
+    });
+  }
+});
+
+ajax(parallelUrl, function(err3, content3) {
+});</code></pre>
+
+      <p>No sequencing or concurrency</p>
+
+    </div>
+
+    <div id="real-async-callbacks-4" class="step when-section-active"
+         data-section="async"
+         data-x="1000" data-y="1000" data-z="-80000"
+         data-rotate="-90">
+
+<pre><code class="language-javascript"
+>function getAsync(cb) {
+  ajax(url, function(err, content) {
+    if (err) return cb(err);
+    // ...
+  });
+}</code></pre>
+
+      <p>No automatic error propagation</p>
+
+    </div>
+
+    <div id="real-async-callbacks-5" class="step when-section-active"
+         data-section="async"
+         data-x="2000" data-y="1000" data-z="-80000"
+         data-rotate="-90">
+
+      <p>Callbacks = fallback to imperative code</p>
+
+    </div>
+
+    <div id="real-async-promises-1" class="step when-section-active"
+         data-section="async"
+         data-x="3000" data-y="1000" data-z="-80000"
+         data-rotate="-90">
+      <h4>Promises</h4>
+
+<!-- (AKA Deferred, Future) -->
+
+<pre><code class="language-javascript"
+>var url = "http://api.example.com/article/1";
+var response = $http.get(url);
+response.then(function(body) {
+  console.log("received response: ", body);
+}, function() {
+  console.error("Oops, ajax failed");
+});</code></pre>
+
+      <p>Represent the eventual value (or error) <em>over time</em></p>
+    </div>
+
+    <div id="real-async-promises-2" class="step when-section-active"
+         data-section="async"
+         data-x="4000" data-y="1000" data-z="-80000"
+         data-rotate="-90">
+
+      <h5><code class="language-javascript">then()</code></h5>
+
+      <p>Not a way to register callbacks</p>
+      <p>Transforms / maps the eventual value</p>
+
+<pre><code class="language-javascript"
+>var headline = response.then(function(body) {
+  return body.field.headline;
+});</code></pre>
+
+<p>Note: you can’t “extract” the value, you must receive it as part of a <code class="language-javascript">then()</code></p>
+
+    </div>
+
+    <div id="real-async-promises-3" class="step when-section-active"
+         data-section="async"
+         data-x="5000" data-y="1000" data-z="-80000"
+         data-rotate="-90">
+
+      <h5>flatMap</h5>
+
+<pre><code class="language-javascript"
+>var authorName = response.then(function(body) {
+  return body.author.id;
+}).then(function(authorId) {
+  return $http.get("/api/people/" + authorId);
+}).then(function(author) {
+  return author.name;
+}, function(e) {
+  console.log("epic fail:", e);
+});</code></pre>
+
+    </div>
+
+    <div id="real-async-promises-4" class="step when-section-active"
+         data-section="async"
+         data-x="6000" data-y="1000" data-z="-80000"
+         data-rotate="-90">
+
+      <h5>Error propagation</h5>
+
+<pre><code class="language-javascript"
+>var authorName;
+try {
+  var authorId = body.author.id;
+  var author = get("/api/people/" + authorId);
+  authorName = author.name;
+} catch(function(e) {
+  console.log("epic fail:", e);
+}</code></pre>
+
+      <p>Promises guide us through the “happy path”</p>
+
+    </div>
+
+
+    <div id="real-async-promises-5" class="step when-section-active"
+         data-section="async"
+         data-x="7000" data-y="1000" data-z="-80000"
+         data-rotate="-90">
+
+      <h5>Declarative concurrency</h5>
+
+<pre><code class="language-javascript"
+>var urls = [ ... ];
+var requestPromises = urls.
+  filter(isGuardianUrl).
+  map(ajax);
+var maxGuPageLen = Promise.all(requestPromises).
+  then(function(pages) {
+    return pages.map(prop("length")).reduce(max);
+  });</code></pre>
+
+    </div>
+
+
+    <div id="real-async-promises-6" class="step when-section-active"
+         data-section="async"
+         data-x="8000" data-y="1000" data-z="-80000"
+         data-rotate="-90">
+
+      <h5>Eventual state</h5>
+
+      <p>Like async, but initiated externally</p>
+
+      <ul class="bulleted">
+        <li>DOM ready</li>
+        <li>Image loaded</li>
+      </ul>
+
+    </div>
+
+
+    <div id="real-async-promises-7" class="step when-section-active"
+         data-section="async"
+         data-x="9000" data-y="1000" data-z="-80000"
+         data-rotate="-90">
+
+      <h5>“Check or observe”</h5>
+
+<pre><code class="language-javascript"
+>if (document.readyState === "complete") {
+  doTheThing();
+} else {
+  document.addEventListener("readystatechange",
+                            function observe() {
+    if (document.readyState === "complete") {
+      doTheThing();
+      document.removeEventListener("readystatechange",
+                                   observe);
+    }
+  });
+}</code></pre>
+
+    </div>
+
+    <div id="real-async-promises-8" class="step when-section-active"
+         data-section="async"
+         data-x="10000" data-y="1000" data-z="-80000"
+         data-rotate="-90">
+
+<pre><code class="language-javascript"
+>var domReady = new Promise(function(resolve, reject) {
+  if (document.readyState === "complete") {
+    resolve();
+  } else {
+    document.addEventListener("readystatechange",
+                              function observe() {
+      if (document.readyState === "complete") {
+        resolve();
+        document.removeEventListener("readystatechange",
+                                     observe);
+      }
+    });
+  }
+});</code></pre>
+
+    </div>
+
+
+    <div id="real-async-promises-9" class="step when-section-active"
+         data-section="async"
+         data-x="11000" data-y="1000" data-z="-80000"
+         data-rotate="-90">
+
+<pre><code class="language-javascript"
+>domReady.then(doTheThing);
+
+// Elsewhere
+domReady.
+  then(loadComments).
+  then(highlightComments);
+</code></pre>
+
+      <p>Uniform interface for delayed values</p>
+
+    </div>
+
+
+    <div id="real-async-promises-10" class="step when-section-active"
+         data-section="async"
+         data-x="12000" data-y="1000" data-z="-80000"
+         data-rotate="-90">
+
+      <h5>Summary</h5>
+
+      <p class="minor">It’s not about avoiding “callback hell”</p>
+
+      <ul>
+        <li>Internalise side-effects</li>
+        <li>Composable &mdash; it’s just a value</li>
+        <li>Map, flatMap, chain (<code class="language-javascript">Promise#then</code>)</li>
+        <li>Declare execution flow (<code class="language-javascript">Promise.all</code>)</li>
+        <li>Error propagation</li>
+        <li>Declarative <span class="minor">(look ma’, no statements)</span></li>
+      </ul>
+    </div>
+
+
+    <div id="real-async-promises-11" class="step when-section-active"
+         data-section="async"
+         data-x="13000" data-y="1000" data-z="-80000"
+         data-rotate="-90">
+
+      <h5>Callbacks &#10145; Promises</h5>
+
+      <p>Libraries: when.js, rsvp, Q, Angular $q, Bluebird, etc.</p>
+      <p>Native in ES6,<br/>
+        already available in modern browsers,<br/>
+        soon in NodeJS</p>
+
+    </div>
+
+
+
+    <div id="real-traits-again-1" class="step" data-x="-1000" data-y="1000"></div>
+
+
+<style>
+.mutable-zone {
+  background-color: #66f;
+  width: 2000px;
+  height: 7000px;
+}
+</style>
+
+    <!-- <div class="step skip when-section-active mutable-zone" -->
+    <!--      data-section="mutable" -->
+    <!--      data-x="-1000" data-y="2000" data-z="-8000" -->
+    <!--      data-rotate="-90"> -->
+    <!-- </div> -->
+
+    <div id="real-mutable" class="step when-section-active"
+         data-section="mutable"
+         data-x="-4000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>Mutable state</h3>
+
+      <p>Like eventual state, but ever-changing</p>
+
+      <ul class="bulleted">
+        <li><code class="language-markup">&lt;input&gt;</code> value</li>
+        <li>checkbox state</li>
+        <li>mouse position</li>
+      </ul>
+
+<!-- FIXME: other non-UI example? -->
+
+    </div>
+
+    <div id="real-mutable-2" class="step when-section-active"
+         data-section="mutable"
+         data-x="-3000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+<ol>
+  <li>Get current value</li>
+  <li>Observe change event to update value</li>
+</ol>
+
+<pre><code class="language-javascript"
+>var queryEl = document.querySelector(".query");
+var q = queryEl.value;
+queryEl.addEventListener("input", function(ev) {
+  q = queryEl.value;
+});</code></pre>
+
+    </div>
+
+    <div id="real-mutable-3" class="step when-section-active"
+         data-section="mutable"
+         data-x="-2000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <h4>More side-effects...</h4>
+
+<pre><code class="language-javascript"
+>var q = queryEl.value.trim().toLowerCase();
+var cleanQ = q.trim().toLowerCase();
+var entries = matchEntries(cleanQ);
+// ... more things with q...
+queryEl.addEventListener("input", function(event) {
+  q = queryEl.value.trim().toLowerCase();
+  cleanQ = q.trim().toLowerCase();
+  entries = matchEntries(cleanQ);
+  // ... more things with q...
+});</code></pre>
+
+      <p>What about the code that uses <code>entries</code>?</p>
+
+    </div>
+
+
+    <div id="real-mutable-4" class="step when-section-active"
+         data-section="mutable"
+         data-x="-1000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <img src="screenshot-spreadsheet.png"
+           alt="Google Spreadsheet formula"
+           width="600"/>
+
+    </div>
+
+
+    <div id="real-mutable-computed-1" class="step when-section-active"
+         data-section="mutable"
+         data-x="0" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>Computed expressions</h3>
+
+      <p>Anything that depends on a mutable state is itself mutable</p>
+
+      <p>Represent that dependency declaratively</p>
+
+    </div>
+
+    <div id="real-mutable-computed-angular-1" class="step when-section-active"
+         data-section="mutable"
+         data-x="1000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>AngularJS</h3>
+
+<pre><code class="language-javascript"
+>$scope.firstName = "Conal";
+$scope.lastName = "Elliot";
+
+$scope.fullName = function() {
+  return $scope.firstName + " " + $scope.lastName;
+};</code></pre>
+
+    </div>
+
+    <div id="real-mutable-computed-angular-2" class="step when-section-active"
+         data-section="mutable"
+         data-x="2000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+<pre><code class="language-javascript"
+>// Read current computed value
+$scope.fullName(); // "Conal Elliot"
+
+// Observe computed value for changes
+$scope.$watch("fullName()", function(fullName) {
+  console.log("Hello " + fullName);
+});
+// outputs "Hello Conal Elliot"
+
+// Update source value
+$scope.firstName = "Billy";
+// outputs "Hello Billy Elliot"
+// on next $digest cycle
+</code></pre>
+
+    </div>
+
+    <div id="real-mutable-computed-angular-3" class="step when-section-active"
+         data-section="mutable"
+         data-x="3000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>Angular</h3>
+
+      <p>Expression as a simple function</p>
+      <p>Must observe using <code class="language-javascript">$watch</code></p>
+      <p>Expensive dirty-checking<br/><span class="minor">(until <code class="language-javascript">Object.observe</code>)</span></p>
+      <p><code class="language-javascript">$watch</code> uses Object reference,
+        need to use <code class="language-javascript">$watchCollection</code></p>
+
+    </div>
+
+
+
+    <div id="real-mutable-computed-ember-1" class="step when-section-active"
+         data-section="mutable"
+         data-x="4000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>EmberJS</h3>
+
+<pre><code class="language-javascript"
+>App.Person = Ember.Object.extend({
+  firstName: null,
+  lastName: null,
+
+  fullName: function() {
+    return this.get("firstName") + " " +
+           this.get("lastName");
+  }.property("firstName", "lastName")
+});
+
+var person = App.Person.create({
+  firstName: "Conal",
+  lastName:  "Elliot"
+});</code></pre>
+
+    </div>
+
+    <div id="real-mutable-computed-ember-2" class="step when-section-active"
+         data-section="mutable"
+         data-x="5000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+<pre><code class="language-javascript"
+>person.get("fullName"); // "Conal Elliot"
+
+App.Person = Ember.Object.extend({
+  // ...
+
+  fullNameChanged: function() {
+    console.log("Hello " + this.get("fullName"));
+  }.observes("fullName").on("init")
+});
+
+person.set("firstName", "Billy");
+// outputs "Hello Billy Elliot"</code></pre>
+
+    </div>
+
+    <div id="real-mutable-computed-ember-3" class="step when-section-active"
+         data-section="mutable"
+         data-x="6000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>EmberJS</h3>
+
+      <p>Explicit deps</p>
+      <p>Only as part of <code class="language-javascript">Ember.Object</code> class</p>
+      <p>Weird syntax for collections<br/>
+        <code class="language-javascript">.property("todos.@each.isDone")</code></p>
+
+    </div>
+
+
+
+    <div id="real-mutable-computed-knockout-1" class="step when-section-active"
+         data-section="mutable"
+         data-x="7000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>Knockout</h3>
+
+<pre><code class="language-javascript"
+>var firstName = ko.observable("Conal");
+var lastName  = ko.observable("Elliot");
+
+var fullName = ko.computed(function() {
+  return firstName() + " " + lastName();
+});</code></pre>
+
+    </div>
+
+
+    <div id="real-mutable-computed-knockout-2" class="step when-section-active"
+         data-section="mutable"
+         data-x="8000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+<pre><code class="language-javascript"
+>fullName(); // "Conal Elliot"
+
+fullName.subscribe(function(fullName) {
+  console.log("Hello " + fullName);
+});
+// outputs "Hello Conal Elliot"
+
+firstName("Billy");
+// outputs "Hello Billy Elliot"</code></pre>
+
+    </div>
+
+    <div id="real-mutable-computed-knockout-3" class="step when-section-active"
+         data-section="mutable"
+         data-x="9000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>Knockout</h3>
+
+      <p>Simple type to wrap mutable values</p>
+      <p>Can be passed around like any value</p>
+      <p>Automatic dependencies</p>
+
+    </div>
+
+
+    <div id="real-mutable-computed-caveat-1" class="step when-section-active"
+         data-section="mutable"
+         data-x="10000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>Caveat</h3>
+
+      <p>Always synchronous</p>
+
+<pre><code class="language-javascript"
+>var friends = ko.computed(function() {
+  asyncFindFriends(fullName(), function(err, ret){
+    // ... ??
+  });
+  return // ... ??
+});</code></pre>
+
+    </div>
+
+
+    <div id="real-mutable-computed-caveat-2" class="step when-section-active"
+         data-section="mutable"
+         data-x="11000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+<pre><code class="language-javascript"
+>var friends = ko.computed(function() {
+  return promiseFindFriends(fullName());
+});
+// Now friends() returns a Promise...
+
+var friendOfFriends = ko.computed(function() {
+  return friends().then(function(frs) {
+    return Promise.all(frs.map(function(f) {
+      return promiseFindFriends(f);
+    })).map(flatten);
+  });
+});
+// Now friendOfFriends() returns a Promise too...</code></pre>
+
+      <p>We need flatMap!</p>
+
+    </div>
+
+
+
+
+    <div id="real-mutable-observables-1" class="step when-section-active"
+         data-section="mutable"
+         data-x="12000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>Observables</h3>
+
+      <q>“The basic idea behind reactive programming is that there are
+      certain <strong>datatypes that represent a value ‘over
+      time’</strong>. Computations that involve these
+      changing-over-time values will themselves have values that
+      change over time.”</q>
+
+    </div>
+
+
+    <div id="real-mutable-observables-bacon-1" class="step when-section-active"
+         data-section="mutable"
+         data-x="13000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <h4>Bacon.js EventStream</h4>
+
+<pre><code class="language-javascript"
+>// Given an EventStream `query'...
+var matchingTitle = query.
+  map(function(q){ return q.trim().toLowerCase();}).
+  flatMap(function(q) {
+    var request = reqwest({
+      url: "http://content.guardianapis.com/search",
+      type: "jsonp",
+      data: {"page-size": 1, q: q}
+    });
+    return Bacon.fromPromise(request);
+  }).map(function(resp) {
+    return resp.response.results[0].webTitle;
+  });</code></pre>
+
+    </div>
+
+
+    <div id="real-mutable-observables-bacon-2" class="step when-section-active"
+         data-section="mutable"
+         data-x="14000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <h5>From DOM events</h5>
+
+<pre><code class="language-javascript"
+>var query = Bacon.
+  fromEventTarget(el, "input").
+  map(".target.value");</code></pre>
+
+      <h5>From WebSockets</h5>
+
+<pre><code class="language-javascript"
+>var query = Bacon.
+  fromEventTarget(webSocket, "message").
+  map(".data")</code></pre>
+
+    </div>
+
+    <div id="real-mutable-observables-bacon-3" class="step when-section-active"
+         data-section="mutable"
+         data-x="15000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <h5>Filter</h5>
+
+<pre><code class="language-javascript"
+>var matchingTitle = query.
+  map(function(q){ return q.trim().toLowerCase();}).
+  filter(function(q){ return q.length > 2; }).
+  flatMap(function(q) { // ...</code></pre>
+
+      <h5>Sliding window</h5>
+
+<pre><code class="language-javascript"
+>var lastTenMatchingTitles =
+  matchingTitle.slidingWindow(10);
+// Each value is an Array of titles</code></pre>
+
+    </div>
+
+
+<style>
+button, input {
+  font-size: 1em;
+}
+</style>
+
+
+    <div id="real-mutable-observables-bacon-4" class="step when-section-active"
+         data-section="mutable"
+         data-x="16000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <button id="plus">+</button>
+      <button id="minus">-</button>
+      <input type="text" id="number" style="width: 3em" />
+
+<pre><code class="language-markup"
+>&lt;button id="plus" &gt;+&lt;/button&gt;
+&lt;button id="minus"&gt;-&lt;/button&gt;
+&lt;input type="text" id="number" /&gt;
+</code></pre>
+
+    </div>
+
+<script>
+var plusButton = document.getElementById("plus");
+var minusButton = document.getElementById("minus");
+var plus = Bacon.
+  fromEventTarget(plusButton,  "click").map(1);
+var minus = Bacon.
+  fromEventTarget(minusButton, "click").map(-1);
+
+var number = plus.merge(minus).
+  scan(0, function(a,b) { return a + b });
+
+var numberField = document.getElementById("number");
+number.onValue(function(n) {
+  numberField.value = n;
+});
+</script>
+
+
+    <div id="real-mutable-observables-bacon-5" class="step when-section-active"
+         data-section="mutable"
+         data-x="17000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+<pre><code class="language-javascript"
+>var plusButton = document.getElementById("plus");
+var minusButton = document.getElementById("minus");
+var plus = Bacon.
+  fromEventTarget(plusButton,  "click").map(1);
+var minus = Bacon.
+  fromEventTarget(minusButton, "click").map(-1);
+
+var number = plus.merge(minus).
+  scan(0, function(a,b) { return a + b });
+
+var numberField = document.getElementById("number");
+number.onValue(function(n) {
+  numberField.value = n; // side-effect
+});
+</pre></code>
+
+    </div>
+
+
+
+    <div id="real-mutable-observables-rxjs-1" class="step when-section-active"
+         data-section="mutable"
+         data-x="18000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <h4>RxJS Observable</h4>
+
+<!-- <pre><code class="language-javascript" -->
+<!-- ></code></pre> -->
+
+      <p>Similar model, more modular</p>
+
+      <p>Ported from other languages</p>
+
+    </div>
+
+<!--
+
+
+marble diagram
+
+
+-->
+
+
+
+
+    <div id="real-mutable-observables-highland-1" class="step when-section-active"
+         data-section="mutable"
+         data-x="20000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <h4>Highland Stream</h4>
+
+      <p>Lazy streams, only executed when a consumer pulls a value or
+         resumes</p>
+
+<pre><code class="language-javascript"
+>var filenames = highland(["foo.txt", "bar.txt", "baz.txt"]);
+var extensions = filenames.map(function(filename){
+  return filename.split(".")[1];
+});
+// doesn't actually map anything yet
+
+extensions.each(function(extension) {
+  console.log(extension);
+}); // causes the stream to resume and output</code></pre>
+
+    </div>
+
+    <div id="real-mutable-observables-highland-2" class="step when-section-active"
+         data-section="mutable"
+         data-x="21000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <h5>Infinite streams</h5>
+
+<pre><code class="language-javascript"
+>var i = 0;
+var integers = highland(function(push, next) {
+  push(null, i++);
+  next();
+});
+
+integers.take(10).each(function(i) {
+  console.log(i);
+});
+// Outputs 0, 1, 2, 3 ... 10</code></pre>
+
+    </div>
+
+
+    <div id="real-mutable-observables-highland-3" class="step when-section-active"
+         data-section="mutable"
+         data-x="22000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <h5>Concurrency</h5>
+
+<pre><code class="language-javascript"
+>var readFile = highland.wrapCallback(fs.readFile);
+//  readFile: String =&gt; Stream[Buffer]
+
+var filenames = highland(["foo.txt", "bar.txt", "baz.txt"]);
+var fileReaders = filenames.map(readFile);
+// Stream[Stream[Buffer]] -- Nothing has run yet
+
+var fileContents = fileReaders.parallel(10);
+// Stream[Buffer] -- Nothing has run yet
+
+filenames.observe().zip(fileContents).
+  each(function(pair) {
+    console.log(pair[0], ":", pair[1].toString());
+  });
+</code></pre>
+
+    </div>
+
+
+    <div id="real-mutable-observables-highland-4" class="step when-section-active"
+         data-section="mutable"
+         data-x="23000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <p><code class="language-javascript">stream.parallel(n);</code></p>
+
+      <p>Consume <code class="language-javascript">n</code> streams at a time, buffering to retain order.</p>
+
+      <p><code class="language-javascript">stream.series();</code></p>
+
+      <p>Consume one stream at a time in order.</p>
+
+      <p><code class="language-javascript">stream.merge();</code></p>
+
+      <p>Consume all streams at once, returning them as soon as they arrive (any ordering).</p>
+
+    </div>
+
+
+
+    <div id="real-mutable-observables-update" class="step when-section-active"
+         data-section="mutable"
+         data-x="25000" data-y="3000" data-z="-80000"
+         data-rotate="-90">
+
+      <h4>Delivery strategy</h4>
+
+      <h5>Sync (push)<br/>
+        <span class="minor">BaconJS, RxJS, Node Streams v1</span></h5>
+
+      <p>Simpler conceptually</p>
+
+      <h5>Back-pressure (pull)<br/>
+        <span class="minor">Highland, RxJS, Node Streams v2</span></h5>
+
+      <p>Avoid flooding slow consumers by managing the source</p>
+
+    </div>
+
+
+    <div id="real-traits-again-2" class="step" data-x="-1000" data-y="1000"></div>
+
+
+    <div id="real-ui" class="step when-section-active"
+         data-section="ui"
+         data-x="-4000" data-y="5000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>UI</h3>
+
+      <p>Both data input and output</p>
+
+    </div>
+
+
+    <div id="real-ui-mvc" class="step when-section-active"
+         data-section="ui"
+         data-x="-3000" data-y="5000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>Event-based MVC<br/>
+        <span class="minor">Backbone, React, etc.</span></h3>
+
+      <p>Render initial UI from model</p>
+      <p>Re-render UI on model change event</p>
+      <p>Update model on UI change event</p>
+
+    </div>
+
+
+    <div id="real-ui-mvc-update" class="step when-section-active"
+         data-section="ui"
+         data-x="-2000" data-y="5000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>Update model on change</h3>
+
+<pre><code class="language-javascript"
+>getInitialState: function() {
+  return {salutation: "Hello!"};
+},
+handleChange: function(event) {
+  this.setState({salutation: event.target.value});
+},
+render: function() {
+  var value = this.state.salutation;
+  return &lt;input type="text" value={value}
+                onChange={this.handleChange} /&gt;;
+}</code></pre>
+
+    </div>
+
+
+    <div id="real-ui-bind-v2m" class="step when-section-active"
+         data-section="ui"
+         data-x="-1000" data-y="5000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>View &#8644; model binding</h3>
+
+<pre><code class="language-markup"
+>&lt;input type="text" data-bind="value: salutations"/&gt;
+
+&lt;script&gt;
+var model = {
+  salutations: ko.observable()
+};
+
+ko.applyBindings(model);
+&lt;/script&gt;</code></pre>
+
+      <p>Model value updated on view change</p>
+
+    </div>
+
+
+    <div id="real-ui-render" class="step when-section-active"
+         data-section="ui"
+         data-x="0" data-y="5000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>Rendering the view</h3>
+
+<pre><code class="language-javascript"
+>Backbone.View.extend({
+  template: _.template(...),
+  render: function() {
+    this.$el.html(this.template(this.model.attributes));
+    return this;
+  }
+});</code></pre>
+
+      <p>Render initial UI from model</p>
+      <p>Re-render UI on model change event</p>
+
+    </div>
+
+
+<!--
+
+listen to model change and call render explicitly
+loop over to add lists etc
+
+-->
+
+
+<!-- + generate UI declaratively from model: -->
+<!--   - loops, etc -->
+<!--   - computed values from model -->
+
+
+    <div id="real-ui-binding" class="step when-section-active"
+         data-section="ui"
+         data-x="3000" data-y="5000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>View data-binding</h3>
+
+
+    </div>
+
+
+    <div id="real-ui-angular-1" class="step when-section-active"
+         data-section="ui"
+         data-x="4000" data-y="5000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>AngularJS</h3>
+
+      <p>Two-way data-binding:</p>
+      <ul>
+        <li>Read from $watch expression (sync)</li>
+        <li>Write to property on scope</li>
+      </ul>
+
+      <p>(previously: Promise unwrapping)</p>
+
+    </div>
+
+    <div id="real-ui-angular-2" class="step when-section-active"
+         data-section="ui"
+         data-x="5000" data-y="5000" data-z="-80000"
+         data-rotate="-90">
+
+<pre><code class="language-javascript"
+>&lt;ul ng-repeat="task in tasks"&gt;
+  &lt;li ng-class="{'done': isDone() || expired}"&gt;
+    {{name}}
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;footer ng-show="tasks.length &gt; 0"&gt;
+  Total: {{tasks.length}}
+&lt;/footer&gt;</code></pre>
+
+    </div>
+
+
+
+    <div id="real-ui-knockout-1" class="step when-section-active"
+         data-section="ui"
+         data-x="6000" data-y="5000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>Knockout</h3>
+
+      <p>Two-way data-binding:</p>
+      <ul>
+        <li>Read from Observable or value</li>
+        <li>Write to Observable</li>
+      </ul>
+
+    </div>
+
+    <div id="real-ui-knockout-2" class="step when-section-active"
+         data-section="ui"
+         data-x="7000" data-y="5000" data-z="-80000"
+         data-rotate="-90">
+
+<pre><code class="language-javascript"
+>&lt;ul data-bind="foreach: tasks"&gt;
+  &lt;li data-bind="text: name,
+                 attr: {'class':
+                   (isDone() || expired) && 'done'
+                 }"&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;footer data-bind="if: tasks.length &gt; 0"&gt;
+  Total:
+  &lt;span data-bind="text: tasks.length"&gt;&lt;/span&gt;
+&lt;/footer&gt;</code></pre>
+
+    </div>
+
+
+
+
+
+    <div id="real-traits-again-2" class="step" data-x="-1000" data-y="1000"></div>
+
+
+    <div class="step skip" data-x="-450" data-y="1230">
+      <p class="fake-concept-00 reveal">}</p>
+    </div>
+
+    <div class="step skip" data-x="-250" data-y="1250">
+      <p class="fake-concept-0 reveal">=</p>
+    </div>
+
+
+    <div class="step skip" data-x="250" data-y="1230">
+      <p class="concept-1 reveal">Reactive</p>
+    </div>
+
+
+    <!-- overview -->
+    <div class="step" data-x="-400" data-y="550" data-z="1500"></div>
+
+
+
+    <div class="hint">
+      <p>Use a spacebar or arrow keys to navigate</p>
+    </div>
+    <script>
+      if ("ontouchstart" in document.documentElement) {
+      document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+      }
+    </script>
+
+    <script src="js/impress.js"></script>
+    <script>impress().init();</script>
+
+</body>
+</html>
