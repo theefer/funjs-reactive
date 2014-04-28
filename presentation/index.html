@@ -36,7 +36,7 @@
     <div id="home" class="step" data-x="-1500" data-y="-3000">
 <!-- FIXME: title -->
       <h1>State Your Business</h1>
-      <p>A journey in the world of<br/> <strong>Reactive Programming</strong> with JavaScript</p>
+      <p>A journey in the world of<br/> <strong>Reactive Programming</strong><br/>with JavaScript</p>
       <div style="margin-top: 2em">
         <p style="float: left;">
           <a href="mailto:seb@cine7.net">Sébastien Cevey</a><br>
@@ -122,34 +122,48 @@ h1, h2, h3, h4, h5, p, li {
 }
 </style>
 
-    <div id="functional" class="step" data-x="-1000">
+    <div id="functional" class="step"
+         data-section="functional"
+         data-x="-1000">
       <h2 class="concept-1">Functional</h2>
     </div>
 
-    <div class="step skip" data-x="-250">
+    <div class="step skip when-section-active"
+         data-section="functional"
+         data-x="-250" data-y="20">
       <p class="fake-concept-0">=</p>
     </div>
 
-    <div id="fun-quote-1" class="step" data-x="500">
+    <div id="fun-quote-1" class="step when-section-active"
+         data-section="functional"
+         data-x="500">
       <q>“Treat computation as the evaluation of mathematical
           functions and avoid state and mutable data.”</q>
     </div>
 
-    <div class="step skip" data-x="1250">
+    <div class="step skip when-section-active"
+         data-section="functional"
+         data-x="1250" data-y="20">
       <p class="fake-concept-0">=</p>
     </div>
 
-    <div id="fun-quote-2" class="step" data-x="2000">
+    <div id="fun-quote-2" class="step when-section-active"
+         data-section="functional"
+         data-x="2000">
       <q>“[Pure functions] produce results that depend only on their
           inputs and not on the program state.”</q>
     </div>
 
-    <div id="fun-quote-side" class="step" data-x="3200" data-rotate="-90">
+    <div id="fun-quote-side" class="step when-active"
+         data-section="functional"
+         data-x="3200" data-rotate="-90">
       <p>Avoid side-effects</p>
       <p>No statements, only expressions</p>
     </div>
 
-    <div id="fun-whole" class="step" data-x="500" data-scale="3"></div>
+    <div id="fun-whole" class="step"
+         data-section="functional"
+         data-x="500" data-scale="3"></div>
 
 <style>
 .distribute {
@@ -173,20 +187,40 @@ h1, h2, h3, h4, h5, p, li {
 
 .reveal {
   opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.7s;
+  transition-timing-function: ease-in-out;
 }
+.reveal {
+  transition-delay: 2s;
+}
+.reveal + .reveal {
+  transition-delay: 3s;
+}
+.reveal + .reveal + .reveal {
+  transition-delay: 4s;
+}
+
+.reveal.no-delay {
+  transition-delay: 0;
+}
+.reveal.no-transition {
+  transition: none;
+}
+
+
 .active       .reveal,
 .after-active .reveal {
   opacity: 1;
-  transition: opacity 0.7s ease-in-out 2s;
 }
+
+
+/*
 .active       .reveal + .reveal,
 .after-active .reveal + .reveal {
   transition-delay: 3s;
 }
-.active       .reveal + .reveal + .reveal,
-.after-active .reveal + .reveal + .reveal {
-  transition-delay: 4s;
-}
+*/
 
 .fade {
   opacity: 1;
@@ -346,7 +380,9 @@ var maxGuUrlLen = urls.
       <p><strong>Express <em>what</em> the program should do,<br/>not <em>how</em></strong></p>
     </div>
 
+
     <!-- back to Functional... -->
+    <!--  -->
     <div id="fun-traits-again" class="step" data-x="-1000"></div>
 
 
@@ -377,8 +413,9 @@ var maxGuUrlLen = urls.
 }
 </style>
 
-    <div id="real" class="step" data-x="-1000" data-y="1000">
-      <div class="reveal">
+    <div id="real-world" class="step" data-x="-1000" data-y="1000">
+      <div class="reveal no-transition">
+
       <h1 class="concept-1">Real World</h1>
 
       <ul class="reveal" style="margin: 0 -20px;">
@@ -386,24 +423,40 @@ var maxGuUrlLen = urls.
           <a href="#/real-async">Async</a>
           <span class="mapping--right">
             <span class="arrow">&#10145;</span>
-            <span class="concept-2 mapping--target">Promise</span>
+            <span class="concept-2 mapping--target"
+                  data-until="real-traits-again-post-async"
+            >?</span>
+            <span class="concept-2 mapping--target"
+                  data-since="real-traits-again-post-async"
+            >Promise</span>
           </span>
         </li>
         <li class="mapping">
           <a href="#/real-mutable">Mutable state</a>
           <span class="mapping--right">
             <span class="arrow">&#10145;</span>
-            <span class="concept-2 mapping--target">Observable</span>
+            <span class="concept-2 mapping--target"
+                  data-until="real-traits-again-post-mutable"
+            >?</span>
+            <span class="concept-2 mapping--target"
+                  data-since="real-traits-again-post-mutable"
+            >Observable</span>
           </span>
         </li>
         <li class="mapping">
           <a href="#/real-ui">UI</a>
           <span class="mapping--right">
             <span class="arrow">&#10145;</span>
-            <span class="concept-2 mapping--target">Data-binding</span>
+            <span class="concept-2 mapping--target"
+                  data-until="real-traits-again-post-ui"
+            >?</span>
+            <span class="concept-2 mapping--target"
+                  data-since="real-traits-again-post-ui"
+            >UI</span>
           </span>
         </li>
       </ul>
+
       </div>
     </div>
 
@@ -748,7 +801,8 @@ domReady.
 
 
 
-    <div id="real-traits-again-1" class="step" data-x="-1000" data-y="1000"></div>
+    <div id="real-traits-again-post-async" class="step"
+         data-x="-1000" data-y="1000"></div>
 
 
 <style>
@@ -1365,7 +1419,7 @@ filenames.observe().zip(fileContents).
     </div>
 
 
-    <div id="real-traits-again-2" class="step" data-x="-1000" data-y="1000"></div>
+    <div id="real-traits-again-post-mutable" class="step" data-x="-1000" data-y="1000"></div>
 
 
     <div id="real-ui" class="step when-section-active"
@@ -1601,20 +1655,20 @@ bacon-angular?
 
 
 
-    <div id="real-traits-again-2" class="step" data-x="-1000" data-y="1000"></div>
+    <div id="real-traits-again-post-ui" class="step" data-x="-1000" data-y="1000"></div>
 
 
-    <div class="step skip" data-x="-450" data-y="1230">
-      <p class="fake-concept-00 reveal">}</p>
+    <div class="step skip" data-x="-450" data-y="1210">
+      <p class="fake-concept-00 reveal no-delay">}</p>
     </div>
 
-    <div class="step skip" data-x="-250" data-y="1250">
-      <p class="fake-concept-0 reveal">=</p>
+    <div class="step skip" data-x="-250" data-y="1210">
+      <p class="fake-concept-0 reveal no-delay">=</p>
     </div>
 
 
-    <div class="step skip" data-x="250" data-y="1230">
-      <p class="concept-1 reveal">Reactive</p>
+    <div class="step skip" data-x="250" data-y="1180">
+      <p class="concept-1 reveal no-transition">Reactive</p>
     </div>
 
 

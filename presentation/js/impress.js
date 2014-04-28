@@ -389,7 +389,7 @@
             body.classList.add("impress-enabled");
             
 
-            allSteps = $$(".step", root)
+            allSteps = $$(".step", root);
             allSteps.forEach( initStep );
 
             steps = $$(".step:not(.skip)", root);
@@ -460,6 +460,20 @@
                 var section = s.dataset.section;
                 s.classList.toggle("section-active", step.section === section);
                 s.classList.toggle("after-active", i < stepIndex);
+            });
+
+            $$('[data-until]', root).forEach(function(hostEl) {
+                var untilId = hostEl.dataset.until;
+                var untilEl = document.getElementById(untilId);
+                var untilIndex = allSteps.indexOf(untilEl);
+                hostEl.style.display = untilIndex > stepIndex ? '' : 'none';
+            });
+
+            $$('[data-since]', root).forEach(function(hostEl) {
+                var sinceId = hostEl.dataset.since;
+                var sinceEl = document.getElementById(sinceId);
+                var sinceIndex = allSteps.indexOf(sinceEl);
+                hostEl.style.display = sinceIndex <= stepIndex ? '' : 'none';
             });
 
             

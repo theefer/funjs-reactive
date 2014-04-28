@@ -1,4 +1,4 @@
-var CAPI_KEY = "TO-BE-PROVIDED";
+var CAPI_KEY = "funjs-reactive";
 
 // Returns a Promise of the response
 // See http://explorer.content.guardianapis.com/#/
