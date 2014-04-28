@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "homepage": "https://github.com/theefer/funjs-reactive",
   "private": true,
+  "dependencies": {
+    "bacon": "https://github.com/baconjs/bacon.js.git"
+  },
   "ignore": [
     "**/.*",
     "node_modules",
