@@ -4,7 +4,8 @@
   "homepage": "https://github.com/theefer/funjs-reactive",
   "private": true,
   "dependencies": {
-    "bacon": "https://github.com/baconjs/bacon.js.git"
+    "bacon": "https://github.com/baconjs/bacon.js.git",
+    "reqwest": "https://github.com/ded/reqwest.git"
   },
   "ignore": [
     "**/.*",
@@ -14,3 +15,4 @@
     "tests"
   ]
 }
+
