@@ -43,6 +43,20 @@ resources.  Looking at the code of existing operations should help
 give some insight as to how this all works.
 
 
+Before you start implementing the operation, install all the NPM
+dependencies:
+
+```
+$ cd operations/plumber-filestats
+$ npm install
+```
+
+You can run the tests using mocha:
+
+```
+$ npm test
+```
+
 ### Useful references
 
 * [Highland API](http://highlandjs.org/)
