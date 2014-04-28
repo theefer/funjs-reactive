@@ -695,12 +695,12 @@ queryEl.addEventListener("input", function(ev) {
       <h4>More side-effects...</h4>
 
 <pre><code class="language-javascript"
->var q = queryEl.value.trim().toLowerCase();
+>var q = queryEl.value;
 var cleanQ = q.trim().toLowerCase();
 var entries = matchEntries(cleanQ);
 // ... more things with q...
 queryEl.addEventListener("input", function(event) {
-  q = queryEl.value.trim().toLowerCase();
+  q = queryEl.value;
   cleanQ = q.trim().toLowerCase();
   entries = matchEntries(cleanQ);
   // ... more things with q...
