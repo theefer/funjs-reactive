@@ -495,7 +495,7 @@ try {
   var authorId = body.author.id;
   var author = get("/api/people/" + authorId);
   authorName = author.name;
-} catch(function(e) {
+} catch(e) {
   console.log("epic fail:", e);
 }</code></pre>
 
