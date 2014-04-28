@@ -82,7 +82,8 @@ h2, h3, h4 {
 .fake-concept-0,
 .concept-1,
 .fake-concept-1,
-.concept-2 {
+.concept-2,
+.fake-concept-2 {
   font-weight: bold;
   text-align: center;
 }
@@ -98,7 +99,8 @@ h2, h3, h4 {
   font-size: 112pt;
 }
 
-.concept-2 {
+.concept-2,
+.fake-concept-2 {
   font-size: 64pt;
 }
 
@@ -377,8 +379,6 @@ var maxGuUrlLen = urls.
 
     <div id="real" class="step" data-x="-1000" data-y="1000">
       <div class="reveal">
-      <p class="minor fade">Meanwhile, in the</p>
-
       <h1 class="concept-1">Real World</h1>
 
       <ul class="reveal" style="margin: 0 -20px;">
@@ -1233,7 +1233,12 @@ number.onValue(function(n) {
 
       <p>Similar model, more modular</p>
 
-      <p>Ported from other languages</p>
+      <p>API similar to other languages (incl. Scala):
+        Observable, Observers, Subjects, Schedulers, etc.</p>
+
+      <p>Querying of async data streams (LINQ)</p>
+
+      <p>Poor documentation</p>
 
     </div>
 
@@ -1255,8 +1260,7 @@ marble diagram
 
       <h4>Highland Stream</h4>
 
-      <p>Lazy streams, only executed when a consumer pulls a value or
-         resumes</p>
+      <p>Lazy streams, concurrency, backpressure</p>
 
 <pre><code class="language-javascript"
 >var filenames = highland(["foo.txt", "bar.txt", "baz.txt"]);
@@ -1391,9 +1395,70 @@ filenames.observe().zip(fileContents).
     </div>
 
 
-    <div id="real-ui-mvc-update" class="step when-section-active"
+    <div id="real-ui-render-1" class="step when-section-active"
          data-section="ui"
          data-x="-2000" data-y="5000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>Rendering the view</h3>
+
+<pre><code class="language-javascript"
+>Backbone.View.extend({
+  template: _.template(...),
+  initialize: function() {
+    this.listenTo(this.model, "change", this.render);
+  },
+  render: function() {
+    this.$el.html(this.template(this.model.attributes));
+    return this;
+  }
+});</code></pre>
+
+    </div>
+
+
+    <div id="real-ui-render-2" class="step when-section-active"
+         data-section="ui"
+         data-x="-1000" data-y="5000" data-z="-80000"
+         data-rotate="-90">
+
+      <p>Not declarative, render as a side-effect</p>
+      <p>Expensive re-render, not targetted</p>
+
+      <p>Ideally, View<sub>t</sub> = f(Model<sub>t</sub>)</p>
+
+    </div>
+
+
+    <div id="real-ui-render-3" class="step when-section-active"
+         data-section="ui"
+         data-x="0" data-y="5000" data-z="-80000"
+         data-rotate="-90">
+
+      <h3>Model &#10142; View binding</h3>
+
+<pre><code class="language-javascript"
+>&lt;ul ng-repeat="task in tasks"&gt;
+  &lt;li ng-class="{'done': isDone() || expired}"&gt;
+    {{name}}
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;footer ng-show="tasks.length &gt; 0"&gt;
+  Total: {{tasks.length}}
+&lt;/footer&gt;</code></pre>
+
+    </div>
+
+
+<!-- + generate UI declaratively from model: -->
+<!--   - loops, etc -->
+<!--   - computed values from model -->
+
+
+
+    <div id="real-ui-mvc-update" class="step when-section-active"
+         data-section="ui"
+         data-x="1000" data-y="5000" data-z="-80000"
          data-rotate="-90">
 
       <h3>Update model on change</h3>
@@ -1416,7 +1481,7 @@ render: function() {
 
     <div id="real-ui-bind-v2m" class="step when-section-active"
          data-section="ui"
-         data-x="-1000" data-y="5000" data-z="-80000"
+         data-x="2000" data-y="5000" data-z="-80000"
          data-rotate="-90">
 
       <h3>View &#8644; model binding</h3>
@@ -1437,41 +1502,6 @@ ko.applyBindings(model);
     </div>
 
 
-    <div id="real-ui-render" class="step when-section-active"
-         data-section="ui"
-         data-x="0" data-y="5000" data-z="-80000"
-         data-rotate="-90">
-
-      <h3>Rendering the view</h3>
-
-<pre><code class="language-javascript"
->Backbone.View.extend({
-  template: _.template(...),
-  render: function() {
-    this.$el.html(this.template(this.model.attributes));
-    return this;
-  }
-});</code></pre>
-
-      <p>Render initial UI from model</p>
-      <p>Re-render UI on model change event</p>
-
-    </div>
-
-
-<!--
-
-listen to model change and call render explicitly
-loop over to add lists etc
-
--->
-
-
-<!-- + generate UI declaratively from model: -->
-<!--   - loops, etc -->
-<!--   - computed values from model -->
-
-
     <div id="real-ui-binding" class="step when-section-active"
          data-section="ui"
          data-x="3000" data-y="5000" data-z="-80000"
@@ -1479,8 +1509,14 @@ loop over to add lists etc
 
       <h3>View data-binding</h3>
 
+Knockout
+Angular
+Ractive
+Ripples
 
     </div>
+
+
 
 
     <div id="real-ui-angular-1" class="step when-section-active"
@@ -1554,6 +1590,14 @@ loop over to add lists etc
     </div>
 
 
+<!--
+
+Push to Observables, write Obs to view?
+
+bacon-angular?
+
+-->
+
 
 
 
@@ -1572,6 +1616,41 @@ loop over to add lists etc
     <div class="step skip" data-x="250" data-y="1230">
       <p class="concept-1 reveal">Reactive</p>
     </div>
+
+
+    <div class="step skip" data-x="250" data-y="0">
+      <p class="fake-concept-1 reveal">Questions?</p>
+
+      <p class="fake-concept-2 reveal">We are hiring!</p>
+    </div>
+
+    <!-- FIXME: Guardian logo again -->
+
+
+<!-- FIXME: references
+
+
+
+## References
+
+http://stackoverflow.com/questions/1028250/what-is-functional-reactive-programming
+https://blog.jcoglan.com/2013/03/30/callbacks-are-imperative-promises-are-functional-nodes-biggest-missed-opportunity/
+http://domenic.me/2012/10/14/youre-missing-the-point-of-promises/
+
+http://stackoverflow.com/questions/11619680/why-should-the-observer-pattern-be-deprecated
+http://lampwww.epfl.ch/~imaier/pub/DeprecatingObserversTR2010.pdf
+
+Functional Reactive Animation (Fran)
+http://conal.net/papers/icfp97/
+
+Reactive manifesto
+
+debug.elm-lang.org
+Coursera Reactive Programming in Scala
+Plumber
+
+
+-->
 
 
     <!-- overview -->
