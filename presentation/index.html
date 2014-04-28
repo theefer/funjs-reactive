@@ -12,6 +12,7 @@
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
 
+    <link href="impress.css" rel="stylesheet" />
     <link href="reactive.css" rel="stylesheet" />
 
     <link rel="shortcut icon" href="favicon.png" />
@@ -57,70 +58,6 @@
     </div>
 
 
-<style>
-h1, h2, h3, h4, h5 {
-  font-weight: bold;
-  margin-bottom: 1em;
-}
-
-h1 {
-  font-size: 2em;
-}
-
-h2, h3, h4 {
-  font-size: 1.5em;
-}
-
-.shadowed {
-  visibility: hidden;
-}
-.present .shadowed {
-  visibility: visible;
-}
-
-.fake-concept-00,
-.fake-concept-0,
-.concept-1,
-.fake-concept-1,
-.concept-2,
-.fake-concept-2 {
-  font-weight: bold;
-  text-align: center;
-}
-
-.fake-concept-00 {
-  font-size: 240pt;
-}
-.fake-concept-0 {
-  font-size: 160pt;
-}
-.concept-1,
-.fake-concept-1 {
-  font-size: 112pt;
-}
-
-.concept-2,
-.fake-concept-2 {
-  font-size: 64pt;
-}
-
-.step.wider {
-  /* FIXME: mobile != */
-  width: 1200px;
-}
-
-pre {
-  font-size: 60%;
-}
-
-h1, h2, h3, h4, h5, p, li {
-  margin-bottom: 0.5em;
-}
-
-.minor {
-  color: #666;
-}
-</style>
 
     <div id="functional" class="step"
          data-section="functional"
@@ -164,73 +101,6 @@ h1, h2, h3, h4, h5, p, li {
     <div id="fun-whole" class="step"
          data-section="functional"
          data-x="500" data-scale="3"></div>
-
-<style>
-.distribute {
-  display: flex;
-/*  flex-direction: column; */
-  justify-content: space-between;
-  height: 600px;
-}
-.distribute-1 {
-  order: 1;
-}
-.distribute-2 {
-  order: 2;
-}
-.distribute-3 {
-  order: 3;
-}
-.distribute-down {
-  align-self: flex-end;
-}
-
-.reveal {
-  opacity: 0;
-  transition-property: opacity;
-  transition-duration: 0.7s;
-  transition-timing-function: ease-in-out;
-}
-.reveal {
-  transition-delay: 2s;
-}
-.reveal + .reveal {
-  transition-delay: 3s;
-}
-.reveal + .reveal + .reveal {
-  transition-delay: 4s;
-}
-
-.reveal.no-delay {
-  transition-delay: 0;
-}
-.reveal.no-transition {
-  transition: none;
-}
-
-
-.active       .reveal,
-.after-active .reveal {
-  opacity: 1;
-}
-
-
-/*
-.active       .reveal + .reveal,
-.after-active .reveal + .reveal {
-  transition-delay: 3s;
-}
-*/
-
-.fade {
-  opacity: 1;
-}
-.active       .fade,
-.after-active .fade {
-  opacity: 0;
-  transition: opacity 0.7s ease-in-out 3s;
-}
-</style>
 
     <div id="fun-traits" class="step from-active" data-x="-1000">
       <ul class="distribute">
@@ -392,27 +262,6 @@ var maxGuUrlLen = urls.
 
 
 
-<style>
-.mapping {
- clear: both;
-}
-.mapping--right {
-  float: right;
-}
-.mapping--target {
-  display: inline-block;
-  text-align: right;
-  min-width: 550px;    /* magic */
-  line-height: 1;
-}
-.arrow {
-  text-align: right;
-  font-size: 1.5em;
-  vertical-align: top;
-  line-height: 1;
-}
-</style>
-
     <div id="real-world" class="step" data-x="-1000" data-y="1000">
       <div class="reveal no-transition">
 
@@ -463,19 +312,19 @@ var maxGuUrlLen = urls.
 
 
 
-<style>
-.async-zone {
-  background-color: #666;
-  width: 2000px;
-  height: 7000px;
-opacity: 1 !important; /* FIXME: arg! */
-}
+<!-- <style> -->
+<!-- .async-zone { -->
+<!--   background-color: #666; -->
+<!--   width: 2000px; -->
+<!--   height: 7000px; -->
+<!-- opacity: 1 !important; /* FIXME: arg! */ -->
+<!-- } -->
 
-.bulleted {
-  list-style-type: disc;
-  margin-left: 1em;
-}
-</style>
+<!-- .bulleted { -->
+<!--   list-style-type: disc; -->
+<!--   margin-left: 1em; -->
+<!-- } -->
+<!-- </style> -->
 
     <!-- <div class="step skip when-section-active async-zone" -->
     <!--      data-section="async" -->
@@ -805,19 +654,6 @@ domReady.
          data-x="-1000" data-y="1000"></div>
 
 
-<style>
-.mutable-zone {
-  background-color: #66f;
-  width: 2000px;
-  height: 7000px;
-}
-</style>
-
-    <!-- <div class="step skip when-section-active mutable-zone" -->
-    <!--      data-section="mutable" -->
-    <!--      data-x="-1000" data-y="2000" data-z="-8000" -->
-    <!--      data-rotate="-90"> -->
-    <!-- </div> -->
 
     <div id="real-mutable" class="step when-section-active"
          data-section="mutable"
@@ -974,7 +810,6 @@ $scope.firstName = "Billy";
 >App.Person = Ember.Object.extend({
   firstName: null,
   lastName: null,
-
   fullName: function() {
     return this.get("firstName") + " " +
            this.get("lastName");
@@ -1207,12 +1042,6 @@ var matchingTitle = query.
     </div>
 
 
-<style>
-button, input {
-  font-size: 1em;
-}
-</style>
-
 
     <div id="real-mutable-observables-bacon-4" class="step when-section-active"
          data-section="mutable"
@@ -1440,7 +1269,7 @@ filenames.observe().zip(fileContents).
          data-rotate="-90">
 
       <h3>Event-based MVC<br/>
-        <span class="minor">Backbone, React, etc.</span></h3>
+        <span class="minor">e.g. Backbone</span></h3>
 
       <p>Render initial UI from model</p>
       <p>Re-render UI on model change event</p>
@@ -1501,6 +1330,8 @@ filenames.observe().zip(fileContents).
   Total: {{tasks.length}}
 &lt;/footer&gt;</code></pre>
 
+      <p>Declarative bindings</p>
+      <p>No imperative DOM manipulations</p>
     </div>
 
 
@@ -1529,6 +1360,8 @@ render: function() {
   return &lt;input type="text" value={value}
                 onChange={this.handleChange} /&gt;;
 }</code></pre>
+
+      <p>Side-effects, boilerplate</p>
 
     </div>
 
@@ -1561,7 +1394,7 @@ ko.applyBindings(model);
          data-x="3000" data-y="5000" data-z="-80000"
          data-rotate="-90">
 
-      <h3>View data-binding</h3>
+      <h3>Two-way data-binding</h3>
 
 Knockout
 Angular
@@ -1658,7 +1491,7 @@ bacon-angular?
     <div id="real-traits-again-post-ui" class="step" data-x="-1000" data-y="1000"></div>
 
 
-    <div class="step skip" data-x="-450" data-y="1210">
+    <div class="step skip" data-x="-420" data-y="1200">
       <p class="fake-concept-00 reveal no-delay">}</p>
     </div>
 
@@ -1670,15 +1503,6 @@ bacon-angular?
     <div class="step skip" data-x="250" data-y="1180">
       <p class="concept-1 reveal no-transition">Reactive</p>
     </div>
-
-
-    <div class="step skip" data-x="250" data-y="0">
-      <p class="fake-concept-1 reveal">Questions?</p>
-
-      <p class="fake-concept-2 reveal">We are hiring!</p>
-    </div>
-
-    <!-- FIXME: Guardian logo again -->
 
 
 <!-- FIXME: references
@@ -1707,8 +1531,27 @@ Plumber
 -->
 
 
-    <!-- overview -->
-    <div class="step" data-x="-400" data-y="550" data-z="1500"></div>
+    <!-- Full overview -->
+    <div id="final-overview" class="step" data-x="-400" data-y="550" data-z="1500"></div>
+
+    <div class="step skip" data-x="250" data-y="0">
+      <p class="concept-2 reveal no-delay">Questions?</p>
+
+      <p class="concept-3 reveal"><a href="http://bit.ly/funjs-reactive">http://bit.ly/funjs-reactive</a></p>
+
+      <div class="reveal">
+        <p style="text-align: center"><img src="guardian-logo.png" alt="The Guardian"/></p>
+        <p class="concept-3" style="text-align: left">We are hiring! &#10548;</p>
+      </div>
+
+    </div>
+
+
+    <!-- Full overview + questions -->
+    <div id="final-overview-questions" class="step" data-x="-400" data-y="550" data-z="1500"></div>
+
+    <!-- FIXME: Guardian logo again -->
+
 
 
 

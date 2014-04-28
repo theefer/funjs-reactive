@@ -1,0 +1,215 @@
+body {
+  /* background-color: #eee; */
+  background-color: #dff2fa;
+  color: #333;
+}
+
+h1,
+h2,
+.concept-1 {
+  color: #04396c;
+}
+
+h3,
+h4,
+h5,
+.concept-2,
+.concept-3 {
+  color: #04859d;
+}
+
+.minor {
+  color: #37b6ce;
+  color: #5fbdce;
+}
+
+
+h1, h2, h3, h4, h5 {
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2, h3, h4 {
+  font-size: 1.5em;
+}
+
+
+pre {
+  font-size: 60%;
+}
+
+h1, h2, h3, h4, h5, p, li {
+  margin-bottom: 0.5em;
+}
+
+button, input {
+  font-size: 1em;
+}
+
+
+
+
+sub, sup {
+  /* Specified in % so that the sup/sup is the
+     right size relative to the surrounding text */
+  font-size: 75%;
+
+  /* Zero out the line-height so that it doesn't
+     interfere with the positioning that follows */
+  line-height: 0;
+
+  /* Where the magic happens: makes all browsers position
+     the sup/sup properly, relative to the surrounding text */
+  position: relative;
+
+  /* Note that if you're using Eric Meyer's reset.css, this
+     is already set and you can remove this rule */
+  vertical-align: baseline;
+}
+
+sup {
+  /* Move the superscripted text up */
+  top: -0.5em;
+}
+
+sub {
+  /* Move the subscripted text down, but only
+     half as far down as the superscript moved up */
+  bottom: -0.25em;
+}
+
+
+
+
+.impress-enabled .step.wider {
+  /* FIXME: mobile != */
+  width: 1200px;
+}
+
+
+
+.fake-concept-00,
+.fake-concept-0,
+.concept-1,
+.fake-concept-1,
+.concept-2,
+.fake-concept-2,
+.concept-3,
+.fake-concept-3 {
+  font-weight: bold;
+  text-align: center;
+}
+
+.fake-concept-00 {
+  font-size: 240pt;
+}
+.fake-concept-0 {
+  font-size: 160pt;
+}
+.concept-1,
+.fake-concept-1 {
+  font-size: 112pt;
+}
+
+.concept-2,
+.fake-concept-2 {
+  font-size: 64pt;
+}
+
+.concept-3,
+.fake-concept-3 {
+  font-size: 48pt;
+}
+
+
+
+
+.distribute {
+  display: flex;
+  justify-content: space-between;
+  height: 600px;
+}
+.distribute-1 {
+  order: 1;
+}
+.distribute-2 {
+  order: 2;
+}
+.distribute-3 {
+  order: 3;
+}
+.distribute-down {
+  align-self: flex-end;
+}
+
+.impress-enabled .reveal {
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.7s;
+  transition-timing-function: ease-in-out;
+}
+.impress-enabled .reveal {
+  transition-delay: 2s;
+}
+.impress-enabled .reveal + .reveal {
+  transition-delay: 3s;
+}
+.impress-enabled .reveal + .reveal + .reveal {
+  transition-delay: 4s;
+}
+
+.impress-enabled .reveal.no-delay {
+  transition-delay: 0;
+}
+.impress-enabled .reveal.no-transition {
+  transition: none;
+}
+
+
+.impress-enabled .active       .reveal,
+.impress-enabled .after-active .reveal {
+  opacity: 1;
+}
+
+
+/*
+.active       .reveal + .reveal,
+.after-active .reveal + .reveal {
+  transition-delay: 3s;
+}
+*/
+
+.impress-enabled .fade {
+  opacity: 1;
+}
+.impress-enabled .active       .fade,
+.impress-enabled .after-active .fade {
+  opacity: 0;
+  transition: opacity 0.7s ease-in-out 3s;
+}
+
+
+
+
+.mapping {
+ clear: both;
+}
+.mapping--right {
+  float: right;
+}
+.mapping--target {
+  display: inline-block;
+  text-align: right;
+  min-width: 550px;    /* magic */
+  line-height: 1;
+}
+.arrow {
+  text-align: right;
+  font-size: 1.5em;
+  vertical-align: top;
+  line-height: 1;
+}
