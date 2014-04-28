@@ -52,7 +52,7 @@
     <div id="me" class="step" data-x="0" data-y="-3000">
       <h2>Reactive &amp; Me</h2>
 
-      <p><strong>Composer</strong> &mdash; Rich SPA in AngularJS</p>
+      <p><strong>Composer</strong> &mdash; Rich SPA in Angular</p>
       <p><strong>Plumber</strong> &mdash; Declarative build pipelines</p>
       <p><strong>Media service</strong> &mdash; Reactive Scala channels</p>
     </div>
@@ -320,10 +320,6 @@ var maxGuUrlLen = urls.
 <!-- opacity: 1 !important; /* FIXME: arg! */ -->
 <!-- } -->
 
-<!-- .bulleted { -->
-<!--   list-style-type: disc; -->
-<!--   margin-left: 1em; -->
-<!-- } -->
 <!-- </style> -->
 
     <!-- <div class="step skip when-section-active async-zone" -->
@@ -747,7 +743,7 @@ queryEl.addEventListener("input", function(event) {
          data-x="1000" data-y="3000" data-z="-80000"
          data-rotate="-90">
 
-      <h3>AngularJS</h3>
+      <h3>Angular</h3>
 
 <pre><code class="language-javascript"
 >$scope.firstName = "Conal";
@@ -804,7 +800,7 @@ $scope.firstName = "Billy";
          data-x="4000" data-y="3000" data-z="-80000"
          data-rotate="-90">
 
-      <h3>EmberJS</h3>
+      <h3>Ember</h3>
 
 <pre><code class="language-javascript"
 >App.Person = Ember.Object.extend({
@@ -849,7 +845,7 @@ person.set("firstName", "Billy");
          data-x="6000" data-y="3000" data-z="-80000"
          data-rotate="-90">
 
-      <h3>EmberJS</h3>
+      <h3>Ember</h3>
 
       <p>Explicit deps</p>
       <p>Only as part of <code class="language-javascript">Ember.Object</code> class</p>
@@ -1292,7 +1288,9 @@ filenames.observe().zip(fileContents).
     this.listenTo(this.model, "change", this.render);
   },
   render: function() {
-    this.$el.html(this.template(this.model.attributes));
+    var data = this.model.attributes;
+    this.$el.html(this.template(data));
+    this.$(".delete").toggle(user.isAdmin);
     return this;
   }
 });</code></pre>
@@ -1330,15 +1328,9 @@ filenames.observe().zip(fileContents).
   Total: {{tasks.length}}
 &lt;/footer&gt;</code></pre>
 
-      <p>Declarative bindings</p>
+      <p>Declarative bindings (incl. expressions)</p>
       <p>No imperative DOM manipulations</p>
     </div>
-
-
-<!-- + generate UI declaratively from model: -->
-<!--   - loops, etc -->
-<!--   - computed values from model -->
-
 
 
     <div id="real-ui-mvc-update" class="step when-section-active"
@@ -1396,95 +1388,79 @@ ko.applyBindings(model);
 
       <h3>Two-way data-binding</h3>
 
-Knockout
-Angular
-Ractive
-Ripples
+      <p class="minor">Angular, Knockout, Ember, Ractive, Ripples, etc.</p>
+
+      <p>Bind computed or inline expressions into the view</p>
+
+      <p>Bind view value to a model value (bidirectional)</p>
 
     </div>
 
 
-
-
-    <div id="real-ui-angular-1" class="step when-section-active"
+    <div id="real-ui-observable-1" class="step when-section-active"
          data-section="ui"
          data-x="4000" data-y="5000" data-z="-80000"
          data-rotate="-90">
 
-      <h3>AngularJS</h3>
+      <h3>UI + Observables?</h3>
 
-      <p>Two-way data-binding:</p>
-      <ul>
-        <li>Read from $watch expression (sync)</li>
-        <li>Write to property on scope</li>
+      <p>Bind Observable into the view</p>
+      <p>Bind view value to an Observable</p>
+
+      <ul class="bulleted">
+        <li><strong>Knockout:</strong> weak observables (no async, not streams)</li>
+        <li><strong>Angular:</strong> used to support Promise unwrapping</li>
       </ul>
 
-      <p>(previously: Promise unwrapping)</p>
-
+      <p>Hybrid: <strong>angular-bacon</strong>, <strong>rx.angular</strong></p>
     </div>
 
-    <div id="real-ui-angular-2" class="step when-section-active"
+
+    <div id="real-ui-observable-2" class="step when-section-active"
          data-section="ui"
          data-x="5000" data-y="5000" data-z="-80000"
          data-rotate="-90">
 
+<pre><code class="language-markup"
+>&lt;input type="text" ng-model="username"/&gt;
+&lt;input type="submit" ng-disabled="formValid"/&gt;</code></pre>
+
 <pre><code class="language-javascript"
->&lt;ul ng-repeat="task in tasks"&gt;
-  &lt;li ng-class="{'done': isDone() || expired}"&gt;
-    {{name}}
-  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;footer ng-show="tasks.length &gt; 0"&gt;
-  Total: {{tasks.length}}
-&lt;/footer&gt;</code></pre>
+>// Controller:
+var username = $scope.$watchAsProperty("username");
+var password = $scope.$watchAsProperty("password");
+var passwordIsValid = password.map(longerThan(5));
+var usernameIsFree = username.changes().
+  flatMapLatest(asyncCheckUsername).
+  merge(username.map(false)).
+  toProperty(false);
+usernameIsFree.and(passwordIsValid).
+  digest($scope, "formValid");</code></pre>
 
     </div>
 
 
-
-    <div id="real-ui-knockout-1" class="step when-section-active"
+    <div id="real-ui-observable-3" class="step when-section-active"
          data-section="ui"
          data-x="6000" data-y="5000" data-z="-80000"
          data-rotate="-90">
 
-      <h3>Knockout</h3>
+      <h3></h3>
 
-      <p>Two-way data-binding:</p>
-      <ul>
-        <li>Read from Observable or value</li>
-        <li>Write to Observable</li>
-      </ul>
+      <p></p>
 
-    </div>
+<!-- FIXME: close the loop
 
-    <div id="real-ui-knockout-2" class="step when-section-active"
-         data-section="ui"
-         data-x="7000" data-y="5000" data-z="-80000"
-         data-rotate="-90">
+purely declarative
+including async, mutations, UI
 
-<pre><code class="language-javascript"
->&lt;ul data-bind="foreach: tasks"&gt;
-  &lt;li data-bind="text: name,
-                 attr: {'class':
-                   (isDone() || expired) && 'done'
-                 }"&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;footer data-bind="if: tasks.length &gt; 0"&gt;
-  Total:
-  &lt;span data-bind="text: tasks.length"&gt;&lt;/span&gt;
-&lt;/footer&gt;</code></pre>
+fully reactive
 
-    </div>
-
-
-<!--
-
-Push to Observables, write Obs to view?
-
-bacon-angular?
+assembles multiple
 
 -->
 
+    </div>
 
 
 
