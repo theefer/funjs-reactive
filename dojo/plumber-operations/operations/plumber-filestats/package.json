@@ -1,0 +1,15 @@
+{
+  "name": "plumber-filestats",
+  "main": "index",
+  "dependencies": {
+    "plumber": "~0.3.0"
+  },
+  "devDependencies": {
+    "plumber-util-test": "~0.3.0",
+    "mocha": "~1.16.2",
+    "should": "~2.1.1"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/mocha"
+  }
+}
