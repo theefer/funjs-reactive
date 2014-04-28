@@ -194,11 +194,13 @@ a[href^="#"] {
 /*     opacity: 1; */
 /* } */
 
+.impress-enabled .step.when-active,
 .impress-enabled .step.from-active,
 .impress-enabled .step.when-section-active {
     opacity: 0;
 }
 
+.impress-enabled .step.when-active.active,
 .impress-enabled .step.from-active.active,
 .impress-enabled .step.from-active.after-active,
 .impress-enabled .step.when-section-active.section-active {

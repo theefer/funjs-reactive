@@ -34,7 +34,7 @@
 
 <div id="impress" data-transition-duration="500">
 
-    <div id="home" class="step" data-x="-1500" data-y="-3000">
+    <div id="home" class="step" data-x="-3000" data-y="-3000">
 <!-- FIXME: title -->
       <h1>State Your Business</h1>
       <p>A journey in the world of<br/> <strong>Reactive Programming</strong><br/>with JavaScript</p>
@@ -48,6 +48,23 @@
                 style="margin-top: 2em; float:right"/></p>
       </div>
     </div>
+
+
+    <div id="why-reactive" class="step"
+         data-x="-1500" data-y="-3000">
+
+      <h2>Reactive?</h2>
+
+      <ul class="bulleted">
+        <li>Principles of Reactive Programming (Coursera)</li>
+        <li>The Reactive Manifesto</li>
+        <li>Elm’s Time Traveling Debugger</li>
+      </ul>
+
+      <p>Seminal paper:<br><strong>Functional Reactive Animation (Fran)</strong>,
+        Conal Elliott and Paul Hudak, 1997</p>
+    </div>
+
 
     <div id="me" class="step" data-x="0" data-y="-3000">
       <h2>Reactive &amp; Me</h2>
@@ -309,24 +326,6 @@ var maxGuUrlLen = urls.
       </div>
     </div>
 
-
-
-
-<!-- <style> -->
-<!-- .async-zone { -->
-<!--   background-color: #666; -->
-<!--   width: 2000px; -->
-<!--   height: 7000px; -->
-<!-- opacity: 1 !important; /* FIXME: arg! */ -->
-<!-- } -->
-
-<!-- </style> -->
-
-    <!-- <div class="step skip when-section-active async-zone" -->
-    <!--      data-section="async" -->
-    <!--      data-x="-1000" data-y="1000" data-z="-80000" -->
-    <!--      data-rotate="-90"> -->
-    <!-- </div> -->
 
     <div id="real-async" class="step when-section-active"
          data-section="async"
@@ -961,7 +960,7 @@ var friendOfFriends = ko.computed(function() {
       <h3>Observables</h3>
 
       <q>“The basic idea behind reactive programming is that there are
-      certain <strong>datatypes that represent a value ‘over
+      certain <strong>data types that represent a value ‘over
       time’</strong>. Computations that involve these
       changing-over-time values will themselves have values that
       change over time.”</q>
@@ -1124,7 +1123,7 @@ number.onValue(function(n) {
 <!--
 
 
-marble diagram
+FIXME: marble diagram
 
 
 -->
@@ -1445,20 +1444,13 @@ usernameIsFree.and(passwordIsValid).
          data-x="6000" data-y="5000" data-z="-80000"
          data-rotate="-90">
 
-      <h3></h3>
+      <h3>Reactive UI</h3>
 
-      <p></p>
+      <p>Purely declarative</p>
 
-<!-- FIXME: close the loop
+      <p>Including async and mutable state</p>
 
-purely declarative
-including async, mutations, UI
-
-fully reactive
-
-assembles multiple
-
--->
+      <p><strong>Express the result in terms of the inputs</strong></p>
 
     </div>
 
@@ -1477,38 +1469,36 @@ assembles multiple
 
 
     <div class="step skip" data-x="250" data-y="1180">
-      <p class="concept-1 reveal no-transition">Reactive</p>
+      <h2 class="concept-1 reveal no-transition">Reactive</h2>
     </div>
 
 
-<!-- FIXME: references
-
-
-
-## References
-
-http://stackoverflow.com/questions/1028250/what-is-functional-reactive-programming
-https://blog.jcoglan.com/2013/03/30/callbacks-are-imperative-promises-are-functional-nodes-biggest-missed-opportunity/
-http://domenic.me/2012/10/14/youre-missing-the-point-of-promises/
-
-http://stackoverflow.com/questions/11619680/why-should-the-observer-pattern-be-deprecated
-http://lampwww.epfl.ch/~imaier/pub/DeprecatingObserversTR2010.pdf
-
-Functional Reactive Animation (Fran)
-http://conal.net/papers/icfp97/
-
-Reactive manifesto
-
-debug.elm-lang.org
-Coursera Reactive Programming in Scala
-Plumber
-
-
--->
-
 
     <!-- Full overview -->
+    <div id="full-overview" class="step" data-x="-400" data-y="550" data-z="1500"></div>
+
+
+    <div id="summary" class="step when-active"
+         data-x="1000" data-y="1800" data-z="-4000">
+
+      <h3>Summary</h3>
+
+      <p><strong>Reactive:</strong> extension of functional principles
+to include <strong>mutable state</strong> and <strong>time</strong>
+(async, events)</p>
+
+      <p><strong>Observable data types</strong> to represent values
+      over time and isolate side-effects</p>
+
+      <p class="minor">Reactive principles can be borrowed in a variety of
+      contexts</p>
+    </div>
+
+
+    <!-- Final overview -->
     <div id="final-overview" class="step" data-x="-400" data-y="550" data-z="1500"></div>
+
+
 
     <div class="step skip" data-x="250" data-y="0">
       <p class="concept-2 reveal no-delay">Questions?</p>
@@ -1525,8 +1515,6 @@ Plumber
 
     <!-- Full overview + questions -->
     <div id="final-overview-questions" class="step" data-x="-400" data-y="550" data-z="1500"></div>
-
-    <!-- FIXME: Guardian logo again -->
 
 
 
