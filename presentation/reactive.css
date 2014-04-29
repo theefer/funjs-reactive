@@ -133,21 +133,21 @@ sub {
 
 
 
-.distribute {
+.impress-enabled .distribute {
   display: flex;
   justify-content: space-between;
   height: 600px;
 }
-.distribute-1 {
+.impress-enabled .distribute-1 {
   order: 1;
 }
-.distribute-2 {
+.impress-enabled .distribute-2 {
   order: 2;
 }
-.distribute-3 {
+.impress-enabled .distribute-3 {
   order: 3;
 }
-.distribute-down {
+.impress-enabled .distribute-down {
   align-self: flex-end;
 }
 
@@ -200,21 +200,37 @@ sub {
 
 
 
-.mapping {
- clear: both;
+.impress-enabled .mapping {
+  clear: both;
 }
-.mapping--right {
+.impress-enabled .mapping--right {
   float: right;
 }
-.mapping--target {
+.impress-enabled .mapping--target {
   display: inline-block;
   text-align: right;
   min-width: 550px;    /* magic */
   line-height: 1;
 }
-.arrow {
+.impress-enabled .arrow {
   text-align: right;
   font-size: 1.5em;
   vertical-align: top;
   line-height: 1;
+}
+
+.impress-not-supported .when-impress-supported {
+  display: none;
+}
+
+
+
+.impress-enabled .align-left {
+  float: left;
+}
+.impress-enabled .align-right {
+  float: right;
+}
+.space-above {
+  margin-top: 2em;
 }
